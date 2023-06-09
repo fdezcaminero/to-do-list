@@ -1,6 +1,26 @@
 import _ from 'lodash';
 import './style.css';
 
+const tasks = [
+  {
+    description: 'go to the supermarket',
+    completed: false,
+    index: 1,
+  },
+  {
+    description: 'take out the trash',
+    completed: true,
+    index: 2,
+  },
+  {
+    description: 'clean the house',
+    completed: true,
+    index: 3,
+  },
+];
+
+
+
 function component() {
   const element = document.createElement('div');
 
