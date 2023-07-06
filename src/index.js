@@ -19,16 +19,28 @@ const tasks = [
   },
 ];
 
+// function component() {
+//   const element = document.createElement('div');
 
+//   // Lodash, now imported by this script
+//   element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+//   element.classList.add('hello');
 
-function component() {
-  const element = document.createElement('div');
+//   return element;
+// }
 
-  // Lodash, now imported by this script
-  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-  element.classList.add('hello');
+// document.body.appendChild(component());
 
-  return element;
+function loadHTML() {
+  const superHTML = document.querySelector('.todoList');
+
+  for (let i=0; i<tasks.length; i++) {
+    superHTML.insertAdjacentHTML("beforeend", `<input type="checkbox">${tasks[i].description}</input>`);
+  }
 }
 
-document.body.appendChild(component());
+// function loadList() {
+
+// }
+
+window.addEventListener('load', loadHTML);
