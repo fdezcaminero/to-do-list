@@ -7,3 +7,15 @@
   width: 250px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+.bottomBorder {
+  border-bottom: 2px solid lightgray;
+}
+
+.bottomPart {
+  text-align: center;
+}
+
+.mainInput {
+  border: 0 solid;
+}
