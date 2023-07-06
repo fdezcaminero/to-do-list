@@ -10,32 +10,33 @@ const tasks = [
   {
     description: 'take out the trash',
     completed: true,
-    index: 2,
+    index: 3,
   },
   {
     description: 'clean the house',
     completed: true,
-    index: 3,
+    index: 2,
   },
 ];
 
-// function component() {
-//   const element = document.createElement('div');
+function sortTasks() {
+  for (let i=0; i<tasks.length; i++) {
+    const moveFrom = i;
+    const moveTo = tasks[i].index - 1;
 
-//   // Lodash, now imported by this script
-//   element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-//   element.classList.add('hello');
+    const objectToMove = tasks.splice(moveFrom, 1)[0];
 
-//   return element;
-// }
-
-// document.body.appendChild(component());
+    tasks.splice(moveTo, 0, objectToMove);
+  }
+}
 
 function loadHTML() {
   const superHTML = document.querySelector('.todoList');
 
+  sortTasks();
+
   for (let i=0; i<tasks.length; i++) {
-    superHTML.insertAdjacentHTML("beforeend", `<input type="checkbox">${tasks[i].description}</input>`);
+    superHTML.insertAdjacentHTML("beforeend", `<li class="noBullet"><input type="checkbox">${tasks[i].description}</li>`);
   }
 }
 
