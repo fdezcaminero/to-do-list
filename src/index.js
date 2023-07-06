@@ -1,5 +1,26 @@
 import _ from 'lodash';
 import './style.css';
+import Icon from './refresh.svg';
+
+function component() {
+  const element = document.createElement('div');
+
+  //  // Lodash, now imported by this script
+  //  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+  //  element.classList.add('hello');
+
+  // Add the image to our existing div.
+
+  const myIcon = new Image();
+
+  myIcon.src = Icon;
+  myIcon.alt = "Refresh";
+
+  element.appendChild(myIcon);
+  return element;
+}
+
+document.getElementById('theTop').appendChild(component());
 
 const tasks = [
   {
@@ -20,7 +41,7 @@ const tasks = [
 ];
 
 function sortTasks() {
-  for (let i=0; i<tasks.length; i++) {
+  for (let i = 0; i < tasks.length; i++) {
     const moveFrom = i;
     const moveTo = tasks[i].index - 1;
 
@@ -35,7 +56,7 @@ function loadHTML() {
 
   sortTasks();
 
-  for (let i=0; i<tasks.length; i++) {
+  for (let i = 0; i < tasks.length; i++) {
     superHTML.insertAdjacentHTML("beforeend", `<li class="noBullet"><input type="checkbox">${tasks[i].description}</li>`);
   }
 }
