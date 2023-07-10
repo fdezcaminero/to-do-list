@@ -2,6 +2,7 @@ import _ from 'lodash';
 import './style.css';
 import Icon from './refresh.svg';
 import Icon2 from './more_vert.svg';
+import Icon3 from './enterIcon.svg';
 
 function component() {
   const element = document.createElement('div');
@@ -16,6 +17,7 @@ function component() {
   
   myIcon.src = Icon;
   myIcon.alt = "Refresh";
+  myIcon.className = 'refreshIcon';
 
   element.appendChild(myIcon);
   return element;
@@ -35,6 +37,21 @@ function component2() {
   element2.appendChild(vertIcon);
   return element2;
 }
+
+function component3() {
+  const element3 = document.createElement('div');
+
+  const enterIcon = new Image();
+  
+  enterIcon.src = Icon3;
+  enterIcon.alt = "Enter sign";
+  enterIcon.className = 'enterIcon';
+
+  element3.appendChild(enterIcon);
+  return element3;
+}
+
+document.getElementById('newTasks').appendChild(component3());
 
 const tasks = [
   {

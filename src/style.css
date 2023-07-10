@@ -1,6 +1,7 @@
 .topPart {
   display: flex;
   justify-content: space-between;
+  font-size: 14px;
 }
 
 .mainCard {
@@ -30,6 +31,15 @@
   padding: 16px 0;
 }
 
+.refreshIcon {
+  width: 30px;
+  padding-top: 14px;
+}
+
 .dotsIcon {
   width: 20px;
+}
+
+.enterIcon {
+  padding-right: 5px;
 }
