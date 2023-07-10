@@ -22,3 +22,8 @@
 .mainInput {
   border: 0 solid;
 }
+
+.clearp {
+  margin: 0;
+  padding: 16px 0;
+}

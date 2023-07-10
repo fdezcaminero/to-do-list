@@ -76,7 +76,8 @@ function loadHTML() {
   sortTasks();
 
   for (let i = 0; i < tasks.length; i++) {
-    superHTML.insertAdjacentHTML("beforeend", `<li class="noBullet bottomBorder taskli"><input type="checkbox">${tasks[i].description}</li>`);
+    superHTML.insertAdjacentHTML("beforeend", `<div id="experiment${i}" class="bottomBorder experiment1"><input type="checkbox">${tasks[i].description}</div>`);
+    document.getElementById(`experiment${i}`).appendChild(component2());
   }
 }
 
@@ -85,5 +86,3 @@ function loadHTML() {
 // }
 
 window.addEventListener('load', loadHTML);
-
-document.getElementById('experiment1').appendChild(component2());
