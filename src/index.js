@@ -26,14 +26,6 @@ document.getElementById('theTop').appendChild(component());
 function component2() {
   const element2 = document.createElement('div');
 
-  // element2.className =  'bottomBorder';
-
-  //  // Lodash, now imported by this script
-  //  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-  //  element.classList.add('hello');
-
-  // Add the image to our existing div.
-
   const vertIcon = new Image();
   
   vertIcon.src = Icon2;
@@ -79,7 +71,7 @@ function loadHTML() {
   sortTasks();
 
   for (let i = 0; i < tasks.length; i++) {
-    superHTML.insertAdjacentHTML("beforeend", `<div id="experiment${i}"><input type="checkbox">${tasks[i].description}</div>`);
+    superHTML.insertAdjacentHTML("beforeend", `<section id="experiment${i}"><div><input type="checkbox">${tasks[i].description}</div></section>`);
     document.getElementById(`experiment${i}`).appendChild(component2());
     document.getElementById(`experiment${i}`).className = 'bottomBorder';
   }
