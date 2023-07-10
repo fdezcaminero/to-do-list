@@ -10,6 +10,7 @@
 
 .bottomBorder {
   border-bottom: 2px solid lightgray;
+  display: flex;
 }
 
 .bottomPart {
@@ -26,4 +27,8 @@
 .clearp {
   margin: 0;
   padding: 16px 0;
+}
+
+.dotsIcon {
+  width: 20px;
 }
