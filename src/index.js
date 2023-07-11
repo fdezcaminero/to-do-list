@@ -6,6 +6,7 @@ import Icon3 from './enterIcon.svg';
 
 function component() {
   const element = document.createElement('div');
+
   const myIcon = new Image();
   
   myIcon.src = Icon;
@@ -85,7 +86,6 @@ function loadHTML() {
     document.getElementById(`experiment${i}`).appendChild(component2());
     document.getElementById(`experiment${i}`).className = 'bottomBorder';
     document.getElementById(`checkbox${i}`).checked = tasks[i].completed;
-    document.getElementById(`checkbox${i}`).addEventListener("click", switchCheck(i));
   }
 }
 
