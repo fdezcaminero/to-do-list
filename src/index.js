@@ -5,12 +5,10 @@ import Icon3 from './enterIcon.svg';
 
 function component() {
   const element = document.createElement('div');
-
   const myIcon = new Image();
   myIcon.src = Icon;
   myIcon.alt = 'Refresh';
   myIcon.className = 'refreshIcon';
-
   element.appendChild(myIcon);
   return element;
 }
