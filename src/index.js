@@ -19,24 +19,20 @@ document.getElementById('theTop').appendChild(component());
 
 function component2() {
   const element2 = document.createElement('div');
-
   const vertIcon = new Image();  
   vertIcon.src = Icon2;
   vertIcon.alt = 'Vertical dots';
   vertIcon.className = 'dotsIcon';
-
   element2.appendChild(vertIcon);
   return element2;
 }
 
 function component3() {
   const element3 = document.createElement('div');
-
   const enterIcon = new Image();
   enterIcon.src = Icon3;
   enterIcon.alt = 'Enter sign';
   enterIcon.className = 'enterIcon';
-
   element3.appendChild(enterIcon);
   return element3;
 }
@@ -72,9 +68,7 @@ function sortTasks() {
 
 function loadHTML() {
   const superHTML = document.querySelector('.todoList');
-
   sortTasks();
-
   for (let i = 0; i < tasks.length; i += 1) {
     superHTML.insertAdjacentHTML('beforeend', `<section id="experiment${i}"><div><input id="checkbox${i}" type="checkbox">${tasks[i].description}</div></section>`);
     document.getElementById(`experiment${i}`).appendChild(component2());
