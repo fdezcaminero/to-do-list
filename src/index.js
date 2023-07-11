@@ -69,9 +69,7 @@ function sortTasks() {
   for (let i = 0; i < tasks.length; i++) {
     const moveFrom = i;
     const moveTo = tasks[i].index - 1;
-
     const objectToMove = tasks.splice(moveFrom, 1)[0];
-
     tasks.splice(moveTo, 0, objectToMove);
   }
 }
