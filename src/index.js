@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import './style.css';
 import Icon from './refresh.svg';
 import Icon2 from './more_vert.svg';
@@ -8,9 +7,8 @@ function component() {
   const element = document.createElement('div');
 
   const myIcon = new Image();
-  
   myIcon.src = Icon;
-  myIcon.alt = "Refresh";
+  myIcon.alt = 'Refresh';
   myIcon.className = 'refreshIcon';
 
   element.appendChild(myIcon);
@@ -22,10 +20,9 @@ document.getElementById('theTop').appendChild(component());
 function component2() {
   const element2 = document.createElement('div');
 
-  const vertIcon = new Image();
-  
+  const vertIcon = new Image();  
   vertIcon.src = Icon2;
-  vertIcon.alt = "Vertical dots";
+  vertIcon.alt = 'Vertical dots';
   vertIcon.className = 'dotsIcon';
 
   element2.appendChild(vertIcon);
@@ -36,9 +33,8 @@ function component3() {
   const element3 = document.createElement('div');
 
   const enterIcon = new Image();
-  
   enterIcon.src = Icon3;
-  enterIcon.alt = "Enter sign";
+  enterIcon.alt = 'Enter sign';
   enterIcon.className = 'enterIcon';
 
   element3.appendChild(enterIcon);
@@ -66,7 +62,7 @@ const tasks = [
 ];
 
 function sortTasks() {
-  for (let i = 0; i < tasks.length; i++) {
+  for (let i = 0; i < tasks.length; i += 1) {
     const moveFrom = i;
     const moveTo = tasks[i].index - 1;
     const objectToMove = tasks.splice(moveFrom, 1)[0];
@@ -79,8 +75,8 @@ function loadHTML() {
 
   sortTasks();
 
-  for (let i = 0; i < tasks.length; i++) {
-    superHTML.insertAdjacentHTML("beforeend", `<section id="experiment${i}"><div><input id="checkbox${i}" type="checkbox">${tasks[i].description}</div></section>`);
+  for (let i = 0; i < tasks.length; i += 1) {
+    superHTML.insertAdjacentHTML('beforeend', `<section id="experiment${i}"><div><input id="checkbox${i}" type="checkbox">${tasks[i].description}</div></section>`);
     document.getElementById(`experiment${i}`).appendChild(component2());
     document.getElementById(`experiment${i}`).className = 'bottomBorder';
     document.getElementById(`checkbox${i}`).checked = tasks[i].completed;
