@@ -1,0 +1,49 @@
+.topPart {
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  font-family: sans-serif;
+  padding-left: 5px;
+}
+
+.mainCard {
+  width: 250px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+.bottomBorder {
+  border-bottom: 2px solid lightgray;
+  display: flex;
+  justify-content: space-between;
+}
+
+.bottomPart {
+  text-align: center;
+  background-color: whitesmoke;
+  color: gray;
+  font-family: sans-serif;
+}
+
+.mainInput {
+  border: 0 solid;
+  font-style: italic;
+}
+
+.clearp {
+  margin: 0;
+  padding: 16px 0;
+}
+
+.refreshIcon {
+  width: 30px;
+  padding-top: 14px;
+  padding-right: 5px;
+}
+
+.dotsIcon {
+  width: 20px;
+}
+
+.enterIcon {
+  padding-right: 5px;
+}
