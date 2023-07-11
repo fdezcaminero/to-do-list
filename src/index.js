@@ -17,7 +17,7 @@ document.getElementById('theTop').appendChild(component());
 
 function component2() {
   const element2 = document.createElement('div');
-  const vertIcon = new Image();  
+  const vertIcon = new Image();
   vertIcon.src = Icon2;
   vertIcon.alt = 'Vertical dots';
   vertIcon.className = 'dotsIcon';
