@@ -6,13 +6,6 @@ import Icon3 from './enterIcon.svg';
 
 function component() {
   const element = document.createElement('div');
-
-  //  // Lodash, now imported by this script
-  //  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-  //  element.classList.add('hello');
-
-  // Add the image to our existing div.
-
   const myIcon = new Image();
   
   myIcon.src = Icon;
@@ -88,14 +81,12 @@ function loadHTML() {
   sortTasks();
 
   for (let i = 0; i < tasks.length; i++) {
-    superHTML.insertAdjacentHTML("beforeend", `<section id="experiment${i}"><div><input type="checkbox">${tasks[i].description}</div></section>`);
+    superHTML.insertAdjacentHTML("beforeend", `<section id="experiment${i}"><div><input id="checkbox${i}" type="checkbox">${tasks[i].description}</div></section>`);
     document.getElementById(`experiment${i}`).appendChild(component2());
     document.getElementById(`experiment${i}`).className = 'bottomBorder';
+    document.getElementById(`checkbox${i}`).checked = tasks[i].completed;
+    document.getElementById(`checkbox${i}`).addEventListener("click", switchCheck(i));
   }
 }
-
-// function loadList() {
-
-// }
 
 window.addEventListener('load', loadHTML);

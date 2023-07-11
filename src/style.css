@@ -1,7 +1,8 @@
 .topPart {
   display: flex;
   justify-content: space-between;
-  font-size: 14px;
+  font-size: 18px;
+  font-family: sans-serif;
 }
 
 .mainCard {
@@ -24,6 +25,7 @@
 
 .mainInput {
   border: 0 solid;
+  font-style: italic;
 }
 
 .clearp {
