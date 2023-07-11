@@ -21,6 +21,7 @@ function component2() {
   vertIcon.src = Icon2;
   vertIcon.alt = 'Vertical dots';
   vertIcon.className = 'dotsIcon';
+  // vertIcon.addEventListener('click', )
   element2.appendChild(vertIcon);
   return element2;
 }
@@ -68,7 +69,7 @@ function loadHTML() {
   const superHTML = document.querySelector('.todoList');
   sortTasks();
   for (let i = 0; i < tasks.length; i += 1) {
-    superHTML.insertAdjacentHTML('beforeend', `<section id="experiment${i}"><div><input id="checkbox${i}" type="checkbox">${tasks[i].description}</div></section>`);
+    superHTML.insertAdjacentHTML('beforeend', `<section id="experiment${i}"><input id="checkbox${i}" type="checkbox"><input class="taskInput" type="text" value="${tasks[i].description}"></section>`);
     document.getElementById(`experiment${i}`).appendChild(component2());
     document.getElementById(`experiment${i}`).className = 'bottomBorder';
     document.getElementById(`checkbox${i}`).checked = tasks[i].completed;
