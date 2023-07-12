@@ -2,6 +2,7 @@ import './style.css';
 import Icon from './refresh.svg';
 import Icon2 from './more_vert.svg';
 import Icon3 from './enterIcon.svg';
+import addTask from './add-remove.js';
 
 function component() {
   const element = document.createElement('div');
@@ -78,14 +79,8 @@ function loadHTML() {
 }
 
 document.getElementById('inputAdd').addEventListener('keypress', function (e) {
-  if (e.key === 'Enter') {
-    const newTask = {};
-    newTask['description'] = this.value;
-    newTask['completed'] = false;
-    newTask['index'] = tasks.length + 1;
-    tasks.push(newTask);
-    loadHTML();
-  }
+  addTask(e);
+  loadHTML();
 });
 
 window.addEventListener('load', loadHTML);
