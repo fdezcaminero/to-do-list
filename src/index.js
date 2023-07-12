@@ -67,6 +67,7 @@ function sortTasks() {
 
 function loadHTML() {
   const superHTML = document.querySelector('.todoList');
+  superHTML.innerHTML = ``;
   sortTasks();
   for (let i = 0; i < tasks.length; i += 1) {
     superHTML.insertAdjacentHTML('beforeend', `<section id="experiment${i}"><input id="checkbox${i}" type="checkbox"><input class="taskInput" type="text" value="${tasks[i].description}"></section>`);
@@ -75,5 +76,16 @@ function loadHTML() {
     document.getElementById(`checkbox${i}`).checked = tasks[i].completed;
   }
 }
+
+document.getElementById('inputAdd').addEventListener('keypress', function (e) {
+  if (e.key === 'Enter') {
+    const newTask = {};
+    newTask['description'] = this.value;
+    newTask['completed'] = false;
+    newTask['index'] = tasks.length + 1;
+    tasks.push(newTask);
+    loadHTML();
+  }
+});
 
 window.addEventListener('load', loadHTML);
