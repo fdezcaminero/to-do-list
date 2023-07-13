@@ -26,6 +26,10 @@ export function addTask(e, inputvalue) {
   }
 }
 
+export function removeTask(removeIndex) {
+  tasks.splice(removeIndex, 1);
+}
+
 // export function removeTask() {
 
 // }
