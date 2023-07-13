@@ -2,7 +2,7 @@ import './style.css';
 import Icon from './refresh.svg';
 import Icon2 from './more_vert.svg';
 import Icon3 from './enterIcon.svg';
-import addTask from './add-remove.js';
+import { tasks, addTask } from './add-remove.js';
 
 function component() {
   const element = document.createElement('div');
@@ -22,10 +22,15 @@ function component2() {
   vertIcon.src = Icon2;
   vertIcon.alt = 'Vertical dots';
   vertIcon.className = 'dotsIcon';
-  // vertIcon.addEventListener('click', )
   element2.appendChild(vertIcon);
+  // element2.addEventListener('click', removeTask(index));
   return element2;
 }
+
+// function removeTask(index) {
+//   tasks.splice(index, 1);
+//   loadHTML();
+// }
 
 function component3() {
   const element3 = document.createElement('div');
@@ -38,24 +43,6 @@ function component3() {
 }
 
 document.getElementById('newTasks').appendChild(component3());
-
-const tasks = [
-  {
-    description: 'go to the supermarket',
-    completed: false,
-    index: 1,
-  },
-  {
-    description: 'take out the trash',
-    completed: true,
-    index: 3,
-  },
-  {
-    description: 'clean the house',
-    completed: true,
-    index: 2,
-  },
-];
 
 function sortTasks() {
   for (let i = 0; i < tasks.length; i += 1) {
@@ -79,7 +66,7 @@ function loadHTML() {
 }
 
 document.getElementById('inputAdd').addEventListener('keypress', function (e) {
-  addTask(e);
+  addTask(e, this.value);
   loadHTML();
 });
 

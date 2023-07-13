@@ -1,14 +1,32 @@
-export default function addTask(e) {
+export const tasks = [
+  {
+    description: 'go to the supermarket',
+    completed: false,
+    index: 1,
+  },
+  {
+    description: 'take out the trash',
+    completed: true,
+    index: 3,
+  },
+  {
+    description: 'clean the house',
+    completed: true,
+    index: 2,
+  },
+];
+
+export function addTask(e, inputvalue) {
   if (e.key === 'Enter') {
     const newTask = {};
-    newTask['description'] = this.value;
+    newTask['description'] = inputvalue;
     newTask['completed'] = false;
     newTask['index'] = tasks.length + 1;
     tasks.push(newTask);
   }
-};
+}
 
-// function removeTask() {
+// export function removeTask() {
 
 // }
 
