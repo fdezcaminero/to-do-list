@@ -49,6 +49,12 @@ function sortTasks() {
   }
 }
 
+function sortIndex() {
+  for (let i = 0; i < tasks.length; i += 1) {
+    tasks[i].index = i + 1;
+  }
+}
+
 function loadHTML() {
   const superHTML = document.querySelector('.todoList');
   superHTML.innerHTML = ``;
@@ -59,6 +65,7 @@ function loadHTML() {
     document.getElementById(`remove${i}`).addEventListener('click', () => {
       removeTask(i);
       sortTasks();
+      sortIndex();
       loadHTML();
     });
     document.getElementById(`experiment${i}`).className = 'bottomBorder';
