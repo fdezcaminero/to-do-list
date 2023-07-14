@@ -2,6 +2,7 @@ import './style.css';
 import Icon from './refresh.svg';
 import Icon2 from './more_vert.svg';
 import Icon3 from './enterIcon.svg';
+import Icon4 from './trashcan.svg';
 import { tasks, addTask, removeTask } from './add-remove.js';
 
 function component() {
@@ -24,7 +25,6 @@ function component2(index) {
   vertIcon.className = 'dotsIcon';
   vertIcon.id = `remove${index}`;
   element2.appendChild(vertIcon);
-  // element2.addEventListener('click', removeTask(index));
   return element2;
 }
 
@@ -60,13 +60,18 @@ function loadHTML() {
   superHTML.innerHTML = ``;
   sortTasks();
   for (let i = 0; i < tasks.length; i += 1) {
-    superHTML.insertAdjacentHTML('beforeend', `<section id="experiment${i}" class="cards"><input id="checkbox${i}" type="checkbox"><input class="taskInput" type="text" value="${tasks[i].description}"></section>`);
+    superHTML.insertAdjacentHTML('beforeend', `<section id="experiment${i}"><input id="checkbox${i}" type="checkbox"><input id="task${i}" class="taskInput" type="text" value="${tasks[i].description}"></section>`);
     document.getElementById(`experiment${i}`).appendChild(component2(i));
     document.getElementById(`remove${i}`).addEventListener('click', () => {
       removeTask(i);
       sortTasks();
       sortIndex();
       loadHTML();
+    });
+    document.getElementById(`task${i}`).addEventListener('click', () => {
+      document.getElementById(`experiment${i}`).classList.add('taskInput2');
+      document.getElementById(`task${i}`).classList.add('taskInput2');
+      document.getElementById(`remove${i}`).src = Icon4;
     });
     document.getElementById(`experiment${i}`).className = 'bottomBorder';
     document.getElementById(`checkbox${i}`).checked = tasks[i].completed;
