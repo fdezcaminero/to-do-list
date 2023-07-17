@@ -5,8 +5,7 @@ import Icon3 from './enterIcon.svg';
 import Icon4 from './trashcan.svg';
 import { addTask, removeTask } from './add-remove.js';
 
-export let tasks = [
-];
+let tasks = [];
 
 function component() {
   const element = document.createElement('div');
@@ -58,9 +57,29 @@ export function sortIndex() {
   }
 }
 
+function trickypart(i) {
+  document.getElementById(`task${i}`).addEventListener('blur', () => {
+    document.getElementById(`experiment${i}`).classList.remove('taskInput2');
+    document.getElementById(`task${i}`).classList.remove('taskInput2');
+    document.getElementById(`remove${i}`).src = Icon2;
+    tasks[i].description = document.getElementById(`task${i}`).value;
+    localStorage.setItem('supertasks', JSON.stringify(tasks));
+  });
+  document.getElementById(`checkbox${i}`).addEventListener('change', () => {
+    if (document.getElementById(`checkbox${i}`).checked) {
+      tasks[i].completed = true;
+      document.getElementById(`task${i}`).classList.add('taskLine');
+    } else {
+      tasks[i].completed = false;
+      document.getElementById(`task${i}`).classList.remove('taskLine');
+    }
+    localStorage.setItem('supertasks', JSON.stringify(tasks));
+  });
+}
+
 function loadHTML() {
   const superHTML = document.querySelector('.todoList');
-  superHTML.innerHTML = ``;
+  superHTML.innerHTML = '';
   sortTasks();
   for (let i = 0; i < tasks.length; i += 1) {
     superHTML.insertAdjacentHTML('beforeend', `<section id="experiment${i}"><input id="checkbox${i}" type="checkbox"><input id="task${i}" class="taskInput" type="text" value="${tasks[i].description}"></section>`);
@@ -76,23 +95,7 @@ function loadHTML() {
       document.getElementById(`task${i}`).classList.add('taskInput2');
       document.getElementById(`remove${i}`).src = Icon4;
     });
-    document.getElementById(`task${i}`).addEventListener('blur', () => {
-      document.getElementById(`experiment${i}`).classList.remove('taskInput2');
-      document.getElementById(`task${i}`).classList.remove('taskInput2');
-      document.getElementById(`remove${i}`).src = Icon2;
-      tasks[i].description = document.getElementById(`task${i}`).value;
-      localStorage.setItem('supertasks', JSON.stringify(tasks));
-    });
-    document.getElementById(`checkbox${i}`).addEventListener('change', () => {
-      if (document.getElementById(`checkbox${i}`).checked) {
-        tasks[i].completed = true;
-        document.getElementById(`task${i}`).classList.add('taskLine');
-      } else {
-        tasks[i].completed = false;
-        document.getElementById(`task${i}`).classList.remove('taskLine');
-      }
-      localStorage.setItem('supertasks', JSON.stringify(tasks));
-    });
+    trickypart(i);
     document.getElementById(`experiment${i}`).className = 'bottomBorder';
     document.getElementById(`checkbox${i}`).checked = tasks[i].completed;
     if (document.getElementById(`checkbox${i}`).checked) {
@@ -118,3 +121,5 @@ if (localTasks) {
 }
 
 window.addEventListener('load', loadHTML);
+
+export const tasks2 = tasks;
