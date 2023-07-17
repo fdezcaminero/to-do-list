@@ -5,7 +5,7 @@ import Icon3 from './enterIcon.svg';
 import Icon4 from './trashcan.svg';
 import { addTask, removeTask } from './add-remove.js';
 
-let tasks = [
+export let tasks = [
 ];
 
 function component() {
@@ -52,7 +52,7 @@ function sortTasks() {
   }
 }
 
-function sortIndex() {
+export function sortIndex() {
   for (let i = 0; i < tasks.length; i += 1) {
     tasks[i].index = i + 1;
   }
@@ -81,6 +81,16 @@ function loadHTML() {
       document.getElementById(`task${i}`).classList.remove('taskInput2');
       document.getElementById(`remove${i}`).src = Icon2;
       tasks[i].description = document.getElementById(`task${i}`).value;
+      localStorage.setItem('supertasks', JSON.stringify(tasks));
+    });
+    document.getElementById(`checkbox${i}`).addEventListener('change', () => {
+      if (document.getElementById(`checkbox${i}`).checked) {
+        tasks[i].completed = true;
+      }
+      else {
+        tasks[i].completed = false;
+      }
+      localStorage.setItem('supertasks', JSON.stringify(tasks));
     });
     document.getElementById(`experiment${i}`).className = 'bottomBorder';
     document.getElementById(`checkbox${i}`).checked = tasks[i].completed;
@@ -99,5 +109,3 @@ if (localTasks) {
 }
 
 window.addEventListener('load', loadHTML);
-
-export default tasks;

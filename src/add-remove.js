@@ -1,4 +1,4 @@
-import tasks from './index.js';
+import { tasks, sortIndex } from './index.js';
 
 export function addTask(e, inputvalue) {
   if (e.key === 'Enter') {
@@ -13,5 +13,6 @@ export function addTask(e, inputvalue) {
 
 export function removeTask(removeIndex) {
   tasks.splice(removeIndex, 1);
+  sortIndex();
   localStorage.setItem('supertasks', JSON.stringify(tasks));
 }
