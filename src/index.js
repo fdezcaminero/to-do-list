@@ -107,6 +107,9 @@ function loadHTML() {
 
 document.getElementById('inputAdd').addEventListener('keypress', function (e) {
   addTask(e, this.value);
+  if (e.key === 'Enter') {
+    this.value = '';
+  }
   loadHTML();
 });
 
