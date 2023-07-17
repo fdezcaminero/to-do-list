@@ -106,7 +106,7 @@ function loadHTML() {
   }
 }
 
-document.getElementById('inputAdd').addEventListener('keypress', function (e) {
+document.getElementById('inputAdd').addEventListener('keypress', function addfunction(e) {
   addTask(e, this.value);
   if (e.key === 'Enter') {
     this.value = '';
