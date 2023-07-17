@@ -87,8 +87,7 @@ function loadHTML() {
       if (document.getElementById(`checkbox${i}`).checked) {
         tasks[i].completed = true;
         document.getElementById(`task${i}`).classList.add('taskLine');
-      }
-      else {
+      } else {
         tasks[i].completed = false;
         document.getElementById(`task${i}`).classList.remove('taskLine');
       }
@@ -98,8 +97,7 @@ function loadHTML() {
     document.getElementById(`checkbox${i}`).checked = tasks[i].completed;
     if (document.getElementById(`checkbox${i}`).checked) {
       document.getElementById(`task${i}`).classList.add('taskLine');
-    }
-    else {
+    } else {
       tasks[i].completed = false;
     }
   }
@@ -115,7 +113,7 @@ document.getElementById('inputAdd').addEventListener('keypress', function (e) {
 
 const localTasks = localStorage.getItem('supertasks');
 
-if (localTasks) {  
+if (localTasks) {
   tasks = JSON.parse(localTasks);
 }
 
