@@ -3,7 +3,10 @@ import Icon from './refresh.svg';
 import Icon2 from './more_vert.svg';
 import Icon3 from './enterIcon.svg';
 import Icon4 from './trashcan.svg';
-import { tasks, addTask, removeTask } from './add-remove.js';
+import { addTask, removeTask } from './add-remove.js';
+
+let tasks = [
+];
 
 function component() {
   const element = document.createElement('div');
@@ -73,6 +76,12 @@ function loadHTML() {
       document.getElementById(`task${i}`).classList.add('taskInput2');
       document.getElementById(`remove${i}`).src = Icon4;
     });
+    document.getElementById(`task${i}`).addEventListener('blur', () => {
+      document.getElementById(`experiment${i}`).classList.remove('taskInput2');
+      document.getElementById(`task${i}`).classList.remove('taskInput2');
+      document.getElementById(`remove${i}`).src = Icon2;
+      tasks[i].description = document.getElementById(`task${i}`).value;
+    });
     document.getElementById(`experiment${i}`).className = 'bottomBorder';
     document.getElementById(`checkbox${i}`).checked = tasks[i].completed;
   }
@@ -83,4 +92,12 @@ document.getElementById('inputAdd').addEventListener('keypress', function (e) {
   loadHTML();
 });
 
+const localTasks = localStorage.getItem('supertasks');
+
+if (localTasks) {  
+  tasks = JSON.parse(localTasks);
+}
+
 window.addEventListener('load', loadHTML);
+
+export default tasks;
