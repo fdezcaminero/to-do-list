@@ -55,3 +55,7 @@
 .enterIcon {
   padding-right: 5px;
 }
+
+.taskLine {
+  text-decoration-line: line-through;
+}

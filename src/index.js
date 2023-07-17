@@ -86,14 +86,22 @@ function loadHTML() {
     document.getElementById(`checkbox${i}`).addEventListener('change', () => {
       if (document.getElementById(`checkbox${i}`).checked) {
         tasks[i].completed = true;
+        document.getElementById(`task${i}`).classList.add('taskLine');
       }
       else {
         tasks[i].completed = false;
+        document.getElementById(`task${i}`).classList.remove('taskLine');
       }
       localStorage.setItem('supertasks', JSON.stringify(tasks));
     });
     document.getElementById(`experiment${i}`).className = 'bottomBorder';
     document.getElementById(`checkbox${i}`).checked = tasks[i].completed;
+    if (document.getElementById(`checkbox${i}`).checked) {
+      document.getElementById(`task${i}`).classList.add('taskLine');
+    }
+    else {
+      tasks[i].completed = false;
+    }
   }
 }
 
