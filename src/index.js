@@ -4,7 +4,7 @@ import Icon2 from './more_vert.svg';
 import Icon3 from './enterIcon.svg';
 import Icon4 from './trashcan.svg';
 import { addTask, removeTask } from './add-remove.js';
-import completefunc from './completefunc';
+import completefunc from './completefunc.js';
 
 let tasks = [];
 
@@ -55,6 +55,10 @@ function sortIndex() {
   }
 }
 
+function callRemove(i) {
+  removeTask(i, tasks);
+}
+
 function loadHTML() {
   const superHTML = document.querySelector('.todoList');
   superHTML.innerHTML = '';
@@ -62,7 +66,7 @@ function loadHTML() {
     superHTML.insertAdjacentHTML('beforeend', `<section id="experiment${i}"><input id="checkbox${i}" type="checkbox"><input id="task${i}" class="taskInput" type="text" value="${tasks[i].description}"></section>`);
     document.getElementById(`experiment${i}`).appendChild(component2(i));
     document.getElementById(`remove${i}`).addEventListener('click', () => {
-      removeTask(i, tasks);
+      callRemove(i);
       sortIndex();
       loadHTML();
     });
@@ -90,11 +94,12 @@ document.getElementById('inputAdd').addEventListener('keypress', function addfun
   loadHTML();
 });
 
+function checkCompleted(notCompleted) {
+  return notCompleted.completed === false;
+}
+
 document.getElementById('clearButton').addEventListener('click', () => {
   tasks = tasks.filter(checkCompleted);
-  function checkCompleted(notCompleted) {
-    return notCompleted.completed === false;
-  }
   loadHTML();
   localStorage.setItem('supertasks', JSON.stringify(tasks));
 });

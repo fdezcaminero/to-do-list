@@ -1,3 +1,5 @@
+import Icon2 from './more_vert.svg';
+
 export default function completefunc(i, tasks) {
   document.getElementById(`task${i}`).addEventListener('blur', () => {
     document.getElementById(`experiment${i}`).classList.remove('taskInput2');
