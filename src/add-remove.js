@@ -1,18 +1,22 @@
-import { tasks2, sortIndex } from './index.js';
-
-export function addTask(e, inputvalue) {
+export function addTask(e, inputvalue, arrayTasks) {
   if (e.key === 'Enter') {
     const newTask = {};
     newTask.description = inputvalue;
     newTask.completed = false;
-    newTask.index = tasks2.length + 1;
-    tasks2.push(newTask);
-    localStorage.setItem('supertasks', JSON.stringify(tasks2));
+    newTask.index = arrayTasks.length + 1;
+    arrayTasks.push(newTask);
+    localStorage.setItem('supertasks', JSON.stringify(arrayTasks));
   }
 }
 
-export function removeTask(removeIndex) {
-  tasks2.splice(removeIndex, 1);
-  sortIndex();
-  localStorage.setItem('supertasks', JSON.stringify(tasks2));
+function sortIndex2(arrayTasks) {
+  for (let i = 0; i < arrayTasks.length; i += 1) {
+    arrayTasks[i].index = i + 1;
+  }
+}
+
+export function removeTask(removeIndex, arrayTasks) {
+  arrayTasks.splice(removeIndex, 1);
+  sortIndex2(arrayTasks);
+  localStorage.setItem('supertasks', JSON.stringify(arrayTasks));
 }

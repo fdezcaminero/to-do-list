@@ -7,6 +7,12 @@ import { addTask, removeTask } from './add-remove.js';
 
 let tasks = [];
 
+const localTasks = localStorage.getItem('supertasks');
+
+if (localTasks) {
+  tasks = JSON.parse(localTasks);
+}
+
 function component() {
   const element = document.createElement('div');
   const myIcon = new Image();
@@ -51,7 +57,7 @@ function sortTasks() {
   }
 }
 
-export function sortIndex() {
+function sortIndex() {
   for (let i = 0; i < tasks.length; i += 1) {
     tasks[i].index = i + 1;
   }
@@ -85,7 +91,7 @@ function loadHTML() {
     superHTML.insertAdjacentHTML('beforeend', `<section id="experiment${i}"><input id="checkbox${i}" type="checkbox"><input id="task${i}" class="taskInput" type="text" value="${tasks[i].description}"></section>`);
     document.getElementById(`experiment${i}`).appendChild(component2(i));
     document.getElementById(`remove${i}`).addEventListener('click', () => {
-      removeTask(i);
+      removeTask(i, tasks);
       sortTasks();
       sortIndex();
       loadHTML();
@@ -107,19 +113,11 @@ function loadHTML() {
 }
 
 document.getElementById('inputAdd').addEventListener('keypress', function addfunction(e) {
-  addTask(e, this.value);
+  addTask(e, this.value, tasks);
   if (e.key === 'Enter') {
     this.value = '';
   }
   loadHTML();
 });
 
-const localTasks = localStorage.getItem('supertasks');
-
-if (localTasks) {
-  tasks = JSON.parse(localTasks);
-}
-
 window.addEventListener('load', loadHTML);
-
-export const tasks2 = tasks;
