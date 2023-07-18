@@ -2,6 +2,16 @@ import './style.css';
 import Icon from './refresh.svg';
 import Icon2 from './more_vert.svg';
 import Icon3 from './enterIcon.svg';
+import Icon4 from './trashcan.svg';
+import { addTask, removeTask } from './add-remove.js';
+
+let tasks = [];
+
+const localTasks = localStorage.getItem('supertasks');
+
+if (localTasks) {
+  tasks = JSON.parse(localTasks);
+}
 
 function component() {
   const element = document.createElement('div');
@@ -15,12 +25,13 @@ function component() {
 
 document.getElementById('theTop').appendChild(component());
 
-function component2() {
+function component2(index) {
   const element2 = document.createElement('div');
   const vertIcon = new Image();
   vertIcon.src = Icon2;
   vertIcon.alt = 'Vertical dots';
   vertIcon.className = 'dotsIcon';
+  vertIcon.id = `remove${index}`;
   element2.appendChild(vertIcon);
   return element2;
 }
@@ -37,24 +48,6 @@ function component3() {
 
 document.getElementById('newTasks').appendChild(component3());
 
-const tasks = [
-  {
-    description: 'go to the supermarket',
-    completed: false,
-    index: 1,
-  },
-  {
-    description: 'take out the trash',
-    completed: true,
-    index: 3,
-  },
-  {
-    description: 'clean the house',
-    completed: true,
-    index: 2,
-  },
-];
-
 function sortTasks() {
   for (let i = 0; i < tasks.length; i += 1) {
     const moveFrom = i;
@@ -64,15 +57,67 @@ function sortTasks() {
   }
 }
 
-function loadHTML() {
-  const superHTML = document.querySelector('.todoList');
-  sortTasks();
+function sortIndex() {
   for (let i = 0; i < tasks.length; i += 1) {
-    superHTML.insertAdjacentHTML('beforeend', `<section id="experiment${i}"><div><input id="checkbox${i}" type="checkbox">${tasks[i].description}</div></section>`);
-    document.getElementById(`experiment${i}`).appendChild(component2());
-    document.getElementById(`experiment${i}`).className = 'bottomBorder';
-    document.getElementById(`checkbox${i}`).checked = tasks[i].completed;
+    tasks[i].index = i + 1;
   }
 }
+
+function trickypart(i) {
+  document.getElementById(`task${i}`).addEventListener('blur', () => {
+    document.getElementById(`experiment${i}`).classList.remove('taskInput2');
+    document.getElementById(`task${i}`).classList.remove('taskInput2');
+    document.getElementById(`remove${i}`).src = Icon2;
+    tasks[i].description = document.getElementById(`task${i}`).value;
+    localStorage.setItem('supertasks', JSON.stringify(tasks));
+  });
+  document.getElementById(`checkbox${i}`).addEventListener('change', () => {
+    if (document.getElementById(`checkbox${i}`).checked) {
+      tasks[i].completed = true;
+      document.getElementById(`task${i}`).classList.add('taskLine');
+    } else {
+      tasks[i].completed = false;
+      document.getElementById(`task${i}`).classList.remove('taskLine');
+    }
+    localStorage.setItem('supertasks', JSON.stringify(tasks));
+  });
+}
+
+function loadHTML() {
+  const superHTML = document.querySelector('.todoList');
+  superHTML.innerHTML = '';
+  sortTasks();
+  for (let i = 0; i < tasks.length; i += 1) {
+    superHTML.insertAdjacentHTML('beforeend', `<section id="experiment${i}"><input id="checkbox${i}" type="checkbox"><input id="task${i}" class="taskInput" type="text" value="${tasks[i].description}"></section>`);
+    document.getElementById(`experiment${i}`).appendChild(component2(i));
+    document.getElementById(`remove${i}`).addEventListener('click', () => {
+      removeTask(i, tasks);
+      sortTasks();
+      sortIndex();
+      loadHTML();
+    });
+    document.getElementById(`task${i}`).addEventListener('click', () => {
+      document.getElementById(`experiment${i}`).classList.add('taskInput2');
+      document.getElementById(`task${i}`).classList.add('taskInput2');
+      document.getElementById(`remove${i}`).src = Icon4;
+    });
+    trickypart(i);
+    document.getElementById(`experiment${i}`).className = 'bottomBorder';
+    document.getElementById(`checkbox${i}`).checked = tasks[i].completed;
+    if (document.getElementById(`checkbox${i}`).checked) {
+      document.getElementById(`task${i}`).classList.add('taskLine');
+    } else {
+      tasks[i].completed = false;
+    }
+  }
+}
+
+document.getElementById('inputAdd').addEventListener('keypress', function addfunction(e) {
+  addTask(e, this.value, tasks);
+  if (e.key === 'Enter') {
+    this.value = '';
+  }
+  loadHTML();
+});
 
 window.addEventListener('load', loadHTML);

@@ -29,6 +29,14 @@
   font-style: italic;
 }
 
+.taskInput {
+  border: 0 solid;
+}
+
+.taskInput2 {
+  background-color: #fffec6;
+}
+
 .clearp {
   margin: 0;
   padding: 16px 0;
@@ -46,4 +54,8 @@
 
 .enterIcon {
   padding-right: 5px;
+}
+
+.taskLine {
+  text-decoration-line: line-through;
 }
