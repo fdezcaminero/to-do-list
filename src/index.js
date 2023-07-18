@@ -4,6 +4,7 @@ import Icon2 from './more_vert.svg';
 import Icon3 from './enterIcon.svg';
 import Icon4 from './trashcan.svg';
 import { addTask, removeTask } from './add-remove.js';
+import completefunc from './completefunc';
 
 let tasks = [];
 
@@ -48,51 +49,20 @@ function component3() {
 
 document.getElementById('newTasks').appendChild(component3());
 
-function sortTasks() {
-  for (let i = 0; i < tasks.length; i += 1) {
-    const moveFrom = i;
-    const moveTo = tasks[i].index - 1;
-    const objectToMove = tasks.splice(moveFrom, 1)[0];
-    tasks.splice(moveTo, 0, objectToMove);
-  }
-}
-
 function sortIndex() {
   for (let i = 0; i < tasks.length; i += 1) {
     tasks[i].index = i + 1;
   }
 }
 
-function trickypart(i) {
-  document.getElementById(`task${i}`).addEventListener('blur', () => {
-    document.getElementById(`experiment${i}`).classList.remove('taskInput2');
-    document.getElementById(`task${i}`).classList.remove('taskInput2');
-    document.getElementById(`remove${i}`).src = Icon2;
-    tasks[i].description = document.getElementById(`task${i}`).value;
-    localStorage.setItem('supertasks', JSON.stringify(tasks));
-  });
-  document.getElementById(`checkbox${i}`).addEventListener('change', () => {
-    if (document.getElementById(`checkbox${i}`).checked) {
-      tasks[i].completed = true;
-      document.getElementById(`task${i}`).classList.add('taskLine');
-    } else {
-      tasks[i].completed = false;
-      document.getElementById(`task${i}`).classList.remove('taskLine');
-    }
-    localStorage.setItem('supertasks', JSON.stringify(tasks));
-  });
-}
-
 function loadHTML() {
   const superHTML = document.querySelector('.todoList');
   superHTML.innerHTML = '';
-  sortTasks();
   for (let i = 0; i < tasks.length; i += 1) {
     superHTML.insertAdjacentHTML('beforeend', `<section id="experiment${i}"><input id="checkbox${i}" type="checkbox"><input id="task${i}" class="taskInput" type="text" value="${tasks[i].description}"></section>`);
     document.getElementById(`experiment${i}`).appendChild(component2(i));
     document.getElementById(`remove${i}`).addEventListener('click', () => {
       removeTask(i, tasks);
-      sortTasks();
       sortIndex();
       loadHTML();
     });
@@ -101,7 +71,7 @@ function loadHTML() {
       document.getElementById(`task${i}`).classList.add('taskInput2');
       document.getElementById(`remove${i}`).src = Icon4;
     });
-    trickypart(i);
+    completefunc(i, tasks);
     document.getElementById(`experiment${i}`).className = 'bottomBorder';
     document.getElementById(`checkbox${i}`).checked = tasks[i].completed;
     if (document.getElementById(`checkbox${i}`).checked) {
