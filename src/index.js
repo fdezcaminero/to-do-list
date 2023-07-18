@@ -120,4 +120,13 @@ document.getElementById('inputAdd').addEventListener('keypress', function addfun
   loadHTML();
 });
 
+document.getElementById('clearButton').addEventListener('click', () => {
+  tasks = tasks.filter(checkCompleted);
+  function checkCompleted(notCompleted) {
+    return notCompleted.completed === false;
+  }
+  loadHTML();
+  localStorage.setItem('supertasks', JSON.stringify(tasks));
+});
+
 window.addEventListener('load', loadHTML);
