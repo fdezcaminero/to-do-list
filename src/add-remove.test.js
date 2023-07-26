@@ -1,4 +1,4 @@
-import { addTask, removeTask } from "./add-remove";
+import { addTask, removeTask, loadHTML } from "./add-remove";
 
 let testArray = [{
   description: 'hola mundo',
@@ -27,4 +27,19 @@ test('Remove task', () => {
   const secondObj = testArray[1];
   removeTask(0, testArray);
   expect(testArray[0]).toEqual(secondObj);
+});
+
+test('Add task into HTML list container', () => {
+  const listContainer = document.createElement('section');
+  listContainer.className = 'todoList';
+  let currentListLength = listContainer.querySelectorAll('.taskElement').length;
+  loadHTML(listContainer, testArray);
+  addTask('Run in the park');
+  loadHTML(listContainer, testArray);
+  expect(listContainer.querySelectotAll('.taskElement').length).toBe(currentListLength + 1);
+
+  currentListLength = listContainer.querySelectorAll('.taskElement');
+  removeTask(0, testArray);
+  loadHTML(listContainer, testArray);
+  expect(listContainer.querySelectorAll('.taskElement').length).toBe(currentListLength - 1);
 });

@@ -3,12 +3,12 @@ import Icon from './refresh.svg';
 import Icon2 from './more_vert.svg';
 import Icon3 from './enterIcon.svg';
 import Icon4 from './trashcan.svg';
-import { addTask, removeTask, updateStorage } from './add-remove.js';
+import { addTask, removeTask, updateStorage, loadHTML } from './add-remove.js';
 import completefunc from './completefunc.js';
 
 let tasks = [];
-
 const localTasks = localStorage.getItem('supertasks');
+const listContainer = document.querySelector('.todoList');
 
 if (localTasks) {
   tasks = JSON.parse(localTasks);
@@ -60,32 +60,7 @@ function callRemove(i) {
   updateStorage(tasks);
 }
 
-function loadHTML() {
-  const superHTML = document.querySelector('.todoList');
-  superHTML.innerHTML = '';
-  for (let i = 0; i < tasks.length; i += 1) {
-    superHTML.insertAdjacentHTML('beforeend', `<section id="experiment${i}"><input id="checkbox${i}" type="checkbox"><input id="task${i}" class="taskInput" type="text" value="${tasks[i].description}"></section>`);
-    document.getElementById(`experiment${i}`).appendChild(component2(i));
-    document.getElementById(`remove${i}`).addEventListener('click', () => {
-      callRemove(i);
-      sortIndex();
-      loadHTML();
-    });
-    document.getElementById(`task${i}`).addEventListener('click', () => {
-      document.getElementById(`experiment${i}`).classList.add('taskInput2');
-      document.getElementById(`task${i}`).classList.add('taskInput2');
-      document.getElementById(`remove${i}`).src = Icon4;
-    });
-    completefunc(i, tasks);
-    document.getElementById(`experiment${i}`).className = 'bottomBorder';
-    document.getElementById(`checkbox${i}`).checked = tasks[i].completed;
-    if (document.getElementById(`checkbox${i}`).checked) {
-      document.getElementById(`task${i}`).classList.add('taskLine');
-    } else {
-      tasks[i].completed = false;
-    }
-  }
-}
+
 
 document.getElementById('inputAdd').addEventListener('keypress', function addfunction(e) {
   if (e.key === 'Enter') {
@@ -93,7 +68,7 @@ document.getElementById('inputAdd').addEventListener('keypress', function addfun
     updateStorage(tasks);
     this.value = '';
   }
-  loadHTML();
+  loadHTML(listContainer, tasks);
 });
 
 function checkCompleted(notCompleted) {
@@ -102,8 +77,10 @@ function checkCompleted(notCompleted) {
 
 document.getElementById('clearButton').addEventListener('click', () => {
   tasks = tasks.filter(checkCompleted);
-  loadHTML();
+  loadHTML(listContainer, tasks);
   localStorage.setItem('supertasks', JSON.stringify(tasks));
 });
 
-window.addEventListener('load', loadHTML);
+window.addEventListener('load', () => {
+  loadHTML(listContainer, tasks);
+});
