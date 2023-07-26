@@ -87,8 +87,8 @@ function loadHTML() {
 }
 
 document.getElementById('inputAdd').addEventListener('keypress', function addfunction(e) {
-  addTask(e, this.value, tasks);
   if (e.key === 'Enter') {
+    addTask(this.value, tasks);
     this.value = '';
   }
   loadHTML();

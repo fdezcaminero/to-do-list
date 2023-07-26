@@ -1,12 +1,10 @@
-export function addTask(e, inputvalue, arrayTasks) {
-  if (e.key === 'Enter') {
-    const newTask = {};
-    newTask.description = inputvalue;
-    newTask.completed = false;
-    newTask.index = arrayTasks.length + 1;
-    arrayTasks.push(newTask);
-    localStorage.setItem('supertasks', JSON.stringify(arrayTasks));
-  }
+export function addTask(inputvalue, arrayTasks) {
+  const newTask = {};
+  newTask.description = inputvalue;
+  newTask.completed = false;
+  newTask.index = arrayTasks.length + 1;
+  arrayTasks.push(newTask);
+  localStorage.setItem('supertasks', JSON.stringify(arrayTasks));
 }
 
 function sortIndex2(arrayTasks) {
@@ -20,3 +18,5 @@ export function removeTask(removeIndex, arrayTasks) {
   sortIndex2(arrayTasks);
   localStorage.setItem('supertasks', JSON.stringify(arrayTasks));
 }
+
+// module.exports = { addTask, removeTask };
