@@ -32,14 +32,15 @@ test('Remove task', () => {
 test('Add task into HTML list container', () => {
   const listContainer = document.createElement('section');
   listContainer.className = 'todoList';
-  let currentListLength = listContainer.querySelectorAll('.taskElement').length;
   loadHTML(listContainer, testArray);
-  addTask('Run in the park');
+  let currentListLength = listContainer.getElementsByClassName('taskElement').length;
+  console.log(currentListLength);
+  addTask('Run in the park', testArray);
   loadHTML(listContainer, testArray);
-  expect(listContainer.querySelectotAll('.taskElement').length).toBe(currentListLength + 1);
+  expect(listContainer.getElementsByClassName('taskElement').length).toBe(currentListLength + 1);
 
-  currentListLength = listContainer.querySelectorAll('.taskElement');
+  currentListLength = listContainer.getElementsByClassName('taskElement').length;
   removeTask(0, testArray);
   loadHTML(listContainer, testArray);
-  expect(listContainer.querySelectorAll('.taskElement').length).toBe(currentListLength - 1);
+  expect(listContainer.getElementsByClassName('taskElement').length).toBe(currentListLength - 1);
 });

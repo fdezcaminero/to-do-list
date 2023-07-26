@@ -29,25 +29,5 @@ export function loadHTML(listContainer, listArray) {
     listElement.id = `experiment${i}`;
     listElement.innerHTML = `<input id="checkbox${i}" type="checkbox"><input id="task${i}" class="taskInput" type="text" value="${listArray[i].description}">`;
     listContainer.appendChild(listElement);
-    // document.getElementById(`experiment${i}`).appendChild(component2(i));
-    //   document.getElementById(`remove${i}`).addEventListener('click', () => {
-    //     // callRemove(i);
-    //     // sortIndex();
-    //     loadHTML(listContainer, tasks);
-    //   });
-    //   document.getElementById(`task${i}`).addEventListener('click', () => {
-    //     document.getElementById(`experiment${i}`).classList.add('taskInput2');
-    //     document.getElementById(`task${i}`).classList.add('taskInput2');
-    //     document.getElementById(`remove${i}`).src = Icon4;
-    //   });
-    //   // completefunc(i, listArray);
-    //   document.getElementById(`experiment${i}`).className = 'bottomBorder';
-    //   document.getElementById(`checkbox${i}`).checked = listArray[i].completed;
-    //   if (document.getElementById(`checkbox${i}`).checked) {
-    //     document.getElementById(`task${i}`).classList.add('taskLine');
-    //   } else {
-    //     listArray[i].completed = false;
-    //   }
-    // }
   }
 }

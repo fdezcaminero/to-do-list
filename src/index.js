@@ -60,6 +60,30 @@ function callRemove(i) {
   updateStorage(tasks);
 }
 
+function addIcons() {
+  tasks.forEach((item, i) => {
+    document.getElementById(`experiment${i}`).appendChild(component2(i));
+    document.getElementById(`remove${i}`).addEventListener('click', () => {
+      callRemove(i);
+      sortIndex();
+      loadHTML(listContainer, tasks);
+    });
+    document.getElementById(`task${i}`).addEventListener('click', () => {
+      document.getElementById(`experiment${i}`).classList.add('taskInput2');
+      document.getElementById(`task${i}`).classList.add('taskInput2');
+      document.getElementById(`remove${i}`).src = Icon4;
+    });
+    completefunc(i, tasks);
+    document.getElementById(`experiment${i}`).className = 'bottomBorder';
+    document.getElementById(`checkbox${i}`).checked = tasks[i].completed;
+    if (document.getElementById(`checkbox${i}`).checked) {
+      document.getElementById(`task${i}`).classList.add('taskLine');
+    } else {
+      tasks[i].completed = false;
+    }
+  });
+}
+
 
 
 document.getElementById('inputAdd').addEventListener('keypress', function addfunction(e) {
@@ -69,6 +93,7 @@ document.getElementById('inputAdd').addEventListener('keypress', function addfun
     this.value = '';
   }
   loadHTML(listContainer, tasks);
+  addIcons();
 });
 
 function checkCompleted(notCompleted) {
@@ -78,9 +103,11 @@ function checkCompleted(notCompleted) {
 document.getElementById('clearButton').addEventListener('click', () => {
   tasks = tasks.filter(checkCompleted);
   loadHTML(listContainer, tasks);
+  addIcons();
   localStorage.setItem('supertasks', JSON.stringify(tasks));
 });
 
 window.addEventListener('load', () => {
   loadHTML(listContainer, tasks);
+  addIcons();
 });
