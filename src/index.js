@@ -3,7 +3,7 @@ import Icon from './refresh.svg';
 import Icon2 from './more_vert.svg';
 import Icon3 from './enterIcon.svg';
 import Icon4 from './trashcan.svg';
-import { addTask, removeTask } from './add-remove.js';
+import { addTask, removeTask, updateStorage } from './add-remove.js';
 import completefunc from './completefunc.js';
 
 let tasks = [];
@@ -89,6 +89,7 @@ function loadHTML() {
 document.getElementById('inputAdd').addEventListener('keypress', function addfunction(e) {
   if (e.key === 'Enter') {
     addTask(this.value, tasks);
+    updateStorage(tasks);
     this.value = '';
   }
   loadHTML();

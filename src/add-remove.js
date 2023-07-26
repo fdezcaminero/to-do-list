@@ -4,6 +4,9 @@ export function addTask(inputvalue, arrayTasks) {
   newTask.completed = false;
   newTask.index = arrayTasks.length + 1;
   arrayTasks.push(newTask);
+}
+
+export function updateStorage(arrayTasks) {
   localStorage.setItem('supertasks', JSON.stringify(arrayTasks));
 }
 
@@ -18,5 +21,3 @@ export function removeTask(removeIndex, arrayTasks) {
   sortIndex2(arrayTasks);
   localStorage.setItem('supertasks', JSON.stringify(arrayTasks));
 }
-
-// module.exports = { addTask, removeTask };

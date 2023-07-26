@@ -6,13 +6,17 @@
   "scripts": {
     "test": "jest",
     "build": "webpack",
-    "start": "webpack serve --open"
+    "start": "webpack serve --open",
+    "dev": "webpack serve"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.22.9",
+    "@babel/preset-env": "^7.22.9",
     "babel-eslint": "^10.1.0",
+    "babel-jest": "^29.6.1",
     "css-loader": "^6.7.4",
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
