@@ -1,4 +1,4 @@
-import { addTask } from "./add-remove";
+import { addTask, removeTask } from "./add-remove";
 
 let testArray = [{
   description: 'hola mundo',
@@ -18,8 +18,13 @@ let testObj = {
   index: 3
 }
 
-addTask('asdfasd', testArray);
-
 test('Add task', () => {
+  addTask('asdfasd', testArray);
   expect(testArray[testArray.length - 1]).toEqual(testObj);
+});
+
+test('Remove task', () => {
+  const secondObj = testArray[1];
+  removeTask(0, testArray);
+  expect(testArray[0]).toEqual(secondObj);
 });

@@ -19,5 +19,4 @@ function sortIndex2(arrayTasks) {
 export function removeTask(removeIndex, arrayTasks) {
   arrayTasks.splice(removeIndex, 1);
   sortIndex2(arrayTasks);
-  localStorage.setItem('supertasks', JSON.stringify(arrayTasks));
 }

@@ -57,6 +57,7 @@ function sortIndex() {
 
 function callRemove(i) {
   removeTask(i, tasks);
+  updateStorage(tasks);
 }
 
 function loadHTML() {
