@@ -1,21 +1,5 @@
-// import Icon2 from './more_vert.svg';
-import { updateStorage } from './add-remove';
-
-export function editTask(i, listContainer, tasks) {
-  listContainer.querySelector(`#experiment${i}`).classList.remove('taskInput2');
-  listContainer.querySelector(`#task${i}`).classList.remove('taskInput2');
-  tasks[i].description = listContainer.querySelector(`#task${i}`).value;
-}
-
-export function checkboxHandler(i, listContainer, tasks) {
-  if (listContainer.querySelector(`#checkbox${i}`).checked) {
-    tasks[i].completed = true;
-    listContainer.querySelector(`#task${i}`).classList.add('taskLine');
-  } else {
-    tasks[i].completed = false;
-    listContainer.querySelector(`#task${i}`).classList.remove('taskLine');
-  }
-}
+import Icon2 from './more_vert.svg';
+import { updateStorage, editTask, checkboxHandler } from './add-remove.js';
 
 export default function completefunc(i, tasks) {
   document.getElementById(`task${i}`).addEventListener('blur', () => {
