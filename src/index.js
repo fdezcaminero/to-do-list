@@ -69,6 +69,7 @@ function addIcons() {
       callRemove(i);
       sortIndex();
       loadHTML(listContainer, tasks);
+      addIcons();
     });
     document.getElementById(`task${i}`).addEventListener('click', () => {
       document.getElementById(`experiment${i}`).classList.add('taskInput2');
