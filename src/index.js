@@ -3,7 +3,9 @@ import Icon from './refresh.svg';
 import Icon2 from './more_vert.svg';
 import Icon3 from './enterIcon.svg';
 import Icon4 from './trashcan.svg';
-import { addTask, removeTask, updateStorage, loadHTML } from './add-remove.js';
+import {
+  addTask, removeTask, updateStorage, loadHTML,
+} from './add-remove.js';
 import completefunc from './completefunc.js';
 
 let tasks = [];
@@ -83,8 +85,6 @@ function addIcons() {
     }
   });
 }
-
-
 
 document.getElementById('inputAdd').addEventListener('keypress', function addfunction(e) {
   if (e.key === 'Enter') {

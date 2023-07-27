@@ -1,22 +1,22 @@
-import { addTask, removeTask, loadHTML } from "./add-remove";
+import { addTask, removeTask, loadHTML } from './add-remove.js';
 
-let testArray = [{
+const testArray = [{
   description: 'hola mundo',
   completed: false,
-  index: 1
+  index: 1,
 },
 {
   description: 'sup',
   completed: false,
-  index: 2
+  index: 2,
 },
 ];
 
-let testObj = {
+const testObj = {
   description: 'asdfasd',
   completed: false,
-  index: 3
-}
+  index: 3,
+};
 
 describe('Add and remove tasks', () => {
   test('Add task', () => {

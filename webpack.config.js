@@ -10,7 +10,7 @@ module.exports = {
     hot: true,
     compress: true,
     open: true,
-    historyApiFallback: true
+    historyApiFallback: true,
   },
   plugins: [
     new HtmlWebpackPlugin({
