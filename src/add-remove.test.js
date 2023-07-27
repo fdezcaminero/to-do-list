@@ -1,14 +1,15 @@
-import { addTask, removeTask, loadHTML } from './add-remove.js';
-import { editTask } from './completefunc.js';
+import { addTask, removeTask, loadHTML, clearAll } from './add-remove.js';
+import { editTask, checkboxHandler } from './completefunc.js';
+// import { clearAll } from './index.js';
 
-const testArray = [{
+let testArray = [{
   description: 'hola mundo',
   completed: false,
   index: 1,
 },
 {
   description: 'sup',
-  completed: false,
+  completed: true,
   index: 2,
 },
 ];
@@ -60,4 +61,18 @@ describe('Test for task edition, completed property, and the clear all button', 
 
     expect(testArray[0].description).toBe(expectedValue);
   });
-})
+  test('Completed checkbox', () => {
+    const listContainer = document.createElement('section');
+    listContainer.className = 'todoList';
+    loadHTML(listContainer, testArray);
+    listContainer.querySelector(`#checkbox0`).checked = true;
+    checkboxHandler(0, listContainer, testArray);
+
+    expect(testArray[0].completed).toBeTruthy();
+  });
+  test('Clear all completed', () => {
+    testArray = clearAll(testArray);
+
+    expect(testArray.length).toBe(1);
+  });
+});

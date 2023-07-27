@@ -1,5 +1,3 @@
-import { checkboxHandler } from "./completefunc";
-
 export function addTask(inputvalue, arrayTasks) {
   const newTask = {};
   newTask.description = inputvalue;
@@ -32,4 +30,13 @@ export function loadHTML(listContainer, listArray) {
     listElement.innerHTML = `<input id="checkbox${i}" type="checkbox"><input id="task${i}" class="taskInput" type="text" value="${listArray[i].description}">`;
     listContainer.appendChild(listElement);
   }
+}
+
+export function checkCompleted(notCompleted) {
+  return notCompleted.completed === false;
+}
+
+export function clearAll(listArray) {
+  listArray = listArray.filter(checkCompleted);
+  return listArray;
 }
