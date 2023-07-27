@@ -10,9 +10,10 @@ import completefunc from './completefunc.js';
 
 let tasks = [];
 const localTasks = localStorage.getItem('supertasks');
+console.log(localTasks);
 const listContainer = document.querySelector('.todoList');
 
-if (localTasks) {
+if (localTasks !== null) {
   tasks = JSON.parse(localTasks);
 }
 

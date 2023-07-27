@@ -1,3 +1,5 @@
+import { checkboxHandler } from "./completefunc";
+
 export function addTask(inputvalue, arrayTasks) {
   const newTask = {};
   newTask.description = inputvalue;

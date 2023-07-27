@@ -1,4 +1,5 @@
 import { addTask, removeTask, loadHTML } from './add-remove.js';
+import { editTask } from './completefunc.js';
 
 const testArray = [{
   description: 'hola mundo',
@@ -47,3 +48,16 @@ describe('Make sure HTML is being added and removed', () => {
     expect(listContainer.getElementsByClassName('taskElement').length).toBe(currentListLength - 1);
   });
 });
+
+describe('Test for task edition, completed property, and the clear all button', () => {
+  test('Task edition', () => {
+    const listContainer = document.createElement('section');
+    listContainer.className = 'todoList';
+    loadHTML(listContainer, testArray);
+    listContainer.querySelector(`#task0`).value = 'Task 1';
+    let expectedValue = 'Task 1';
+    editTask(0, listContainer, testArray);
+
+    expect(testArray[0].description).toBe(expectedValue);
+  });
+})
