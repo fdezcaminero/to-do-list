@@ -6,6 +6,11 @@ module.exports = {
   entry: './src/index.js',
   devServer: {
     static: './dist',
+    port: 3000,
+    hot: true,
+    compress: true,
+    open: true,
+    historyApiFallback: true,
   },
   plugins: [
     new HtmlWebpackPlugin({
