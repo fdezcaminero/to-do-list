@@ -31,3 +31,28 @@ export function loadHTML(listContainer, listArray) {
     listContainer.appendChild(listElement);
   }
 }
+
+export function checkCompleted(notCompleted) {
+  return notCompleted.completed === false;
+}
+
+export function clearAll(listArray) {
+  listArray = listArray.filter(checkCompleted);
+  return listArray;
+}
+
+export function editTask(i, listContainer, tasks) {
+  listContainer.querySelector(`#experiment${i}`).classList.remove('taskInput2');
+  listContainer.querySelector(`#task${i}`).classList.remove('taskInput2');
+  tasks[i].description = listContainer.querySelector(`#task${i}`).value;
+}
+
+export function checkboxHandler(i, listContainer, tasks) {
+  if (listContainer.querySelector(`#checkbox${i}`).checked) {
+    tasks[i].completed = true;
+    listContainer.querySelector(`#task${i}`).classList.add('taskLine');
+  } else {
+    tasks[i].completed = false;
+    listContainer.querySelector(`#task${i}`).classList.remove('taskLine');
+  }
+}

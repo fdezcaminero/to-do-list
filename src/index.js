@@ -4,7 +4,7 @@ import Icon2 from './more_vert.svg';
 import Icon3 from './enterIcon.svg';
 import Icon4 from './trashcan.svg';
 import {
-  addTask, removeTask, updateStorage, loadHTML,
+  addTask, removeTask, updateStorage, loadHTML, clearAll,
 } from './add-remove.js';
 import completefunc from './completefunc.js';
 
@@ -12,7 +12,7 @@ let tasks = [];
 const localTasks = localStorage.getItem('supertasks');
 const listContainer = document.querySelector('.todoList');
 
-if (localTasks) {
+if (localTasks !== null) {
   tasks = JSON.parse(localTasks);
 }
 
@@ -65,7 +65,8 @@ function callRemove(i) {
 function addIcons() {
   tasks.forEach((item, i) => {
     document.getElementById(`experiment${i}`).appendChild(component2(i));
-    document.getElementById(`remove${i}`).addEventListener('click', () => {
+    document.getElementById(`remove${i}`).addEventListener('click', (e) => {
+      e.target.remove();
       callRemove(i);
       sortIndex();
       loadHTML(listContainer, tasks);
@@ -97,12 +98,8 @@ document.getElementById('inputAdd').addEventListener('keypress', function addfun
   addIcons();
 });
 
-function checkCompleted(notCompleted) {
-  return notCompleted.completed === false;
-}
-
 document.getElementById('clearButton').addEventListener('click', () => {
-  tasks = tasks.filter(checkCompleted);
+  tasks = clearAll(tasks);
   loadHTML(listContainer, tasks);
   addIcons();
   localStorage.setItem('supertasks', JSON.stringify(tasks));

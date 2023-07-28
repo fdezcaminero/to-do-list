@@ -1,21 +1,16 @@
 import Icon2 from './more_vert.svg';
+import { updateStorage, editTask, checkboxHandler } from './add-remove.js';
 
 export default function completefunc(i, tasks) {
   document.getElementById(`task${i}`).addEventListener('blur', () => {
-    document.getElementById(`experiment${i}`).classList.remove('taskInput2');
-    document.getElementById(`task${i}`).classList.remove('taskInput2');
-    document.getElementById(`remove${i}`).src = Icon2;
-    tasks[i].description = document.getElementById(`task${i}`).value;
-    localStorage.setItem('supertasks', JSON.stringify(tasks));
+    const listContainer = document.querySelector('.todoList');
+    editTask(i, listContainer, tasks);
+    listContainer.querySelector(`#remove${i}`).src = Icon2;
+    updateStorage(tasks);
   });
   document.getElementById(`checkbox${i}`).addEventListener('change', () => {
-    if (document.getElementById(`checkbox${i}`).checked) {
-      tasks[i].completed = true;
-      document.getElementById(`task${i}`).classList.add('taskLine');
-    } else {
-      tasks[i].completed = false;
-      document.getElementById(`task${i}`).classList.remove('taskLine');
-    }
-    localStorage.setItem('supertasks', JSON.stringify(tasks));
+    const listContainer = document.querySelector('.todoList');
+    checkboxHandler(i, listContainer, tasks);
+    updateStorage(tasks);
   });
 }
